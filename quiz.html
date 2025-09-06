@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Interactif</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+  <header><a href="index.html">⬅ Retour</a>
+    <h1>Quiz Interactif</h1>
+  </header>
+  <main>
+    <p id='q'></p><button onclick="rep('a')">Paris</button><button onclick="rep('b')">Londres</button>
+    <script>let question = 'Quelle est la capitale de la France?'; document.getElementById('q').innerText = question; function rep(r) { alert(r === 'a' ? 'Bonne réponse!' : 'Faux!'); }</script>
+  </main>
+</body>
+
+</html>

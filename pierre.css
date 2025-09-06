@@ -1,0 +1,6 @@
+body{margin:0;font-family:Arial;background:#f9f9f9;color:#333;text-align:center}
+header{background:#171717;color:#fff;padding:15px}
+header a{color:#1ed0b0;text-decoration:none;float:left}
+main{padding:20px}
+button{padding:10px 20px;margin:10px;border:none;border-radius:8px;background:#1ed0b0;color:#fff;cursor:pointer}
+button:hover{background:#17a98d}

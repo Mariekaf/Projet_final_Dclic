@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pierre-Papier-Ciseaux</title>
+  <link rel="stylesheet" href="pierre.css">
+</head>
+<body>
+  <header><a href="../minijeu.html">⬅ Retour</a><h1>Pierre-Papier-Ciseaux</h1></header>
+  <main>
+    <p>Choisis :</p><button onclick="play('Pierre')">Pierre</button><button onclick="play('Papier')">Papier</button><button onclick="play('Ciseaux')">Ciseaux</button><p id='result'></p><script>function play(choice){const options=['Pierre','Papier','Ciseaux'];let ordi=options[Math.floor(Math.random()*3)];let res='';if(choice===ordi){res='Égalité!';}else if((choice==='Pierre'&&ordi==='Ciseaux')||(choice==='Papier'&&ordi==='Pierre')||(choice==='Ciseaux'&&ordi==='Papier')){res='Gagné!';}else{res='Perdu!';}document.getElementById('result').innerText=`Toi: ${choice} | Ordi: ${ordi} => ${res}`;}</script>
+  </main>
+</body>
+</html>

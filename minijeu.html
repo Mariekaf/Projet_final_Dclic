@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Jeux</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .game-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            width: 350px;
+            min-height: 400px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #6e8efb;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .game-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        button {
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .rps-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .rps-buttons button {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #result1,
+        #result2 {
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+            min-height: 30px;
+            padding: 8px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        .calc-game input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .calc-game button {
+            width: 100%;
+        }
+
+        .chrono-game {
+            text-align: center;
+        }
+
+        #chrono {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            font-family: monospace;
+            color: #6e8efb;
+        }
+
+        .chrono-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chrono-buttons button {
+            flex: 1;
+        }
+
+        .win {
+            color: #28a745;
+        }
+
+        .lose {
+            color: #dc3545;
+        }
+
+        .draw {
+            color: #ffc107;
+        }
+
+        .back-btn {
+            background: #fff;
+            color: #6e8efb;
+            border: 2px solid #6e8efb;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #6e8efb;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .games-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .game-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="back-btn" onclick="history.back()">⬅ Retour</button>
+
+    <div class="container">
+        <header>
+            <h1>Mini-Jeux</h1>
+            <p>Choisissez un jeu et amusez-vous!</p>
+        </header>
+
+        <div class="games-container">
+            <!-- Jeu Pierre Papier Ciseaux -->
+            <div class="game-card">
+                <h3>Pierre Papier Ciseaux</h3>
+                <div class="game-content">
+                    <div class="rps-game">
+                        <div class="rps-buttons">
+                            <button onclick="play('pierre')">✊ Pierre</button>
+                            <button onclick="play('papier')">✋ Papier</button>
+                            <button onclick="play('ciseaux')">✌️ Ciseaux</button>
+                        </div>
+                        <p id="result1"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jeu de Calcul -->
+            <div class="game-card">
+                <h3>Mini-jeu de Calcul</h3>
+                <div class="game-content">
+                    <div class="calc-game">
+                        <p id="question"></p>
+                        <input type="number" id="answer" placeholder="Votre réponse">
+                        <button onclick="checkAnswer()">Tester</button>
+                        <p id="result2"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chronomètre -->
+            <div class="game-card">
+                <h3>Chronomètre</h3>
+                <div class="game-content">
+                    <div class="chrono-game">
+                        <p id="chrono">00:00:00</p>
+                        <div class="chrono-buttons">
+                            <button onclick="startChrono()">Démarrer</button>
+                            <button onclick="stopChrono()">Stop</button>
+                            <button onclick="resetChrono()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Jeu Pierre Papier Ciseaux
+        function play(playerChoice) {
+            const choices = ['pierre', 'papier', 'ciseaux'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            let result = "";
+
+            if (playerChoice === computerChoice) {
+                result = "Égalité!";
+                document.getElementById("result1").className = "draw";
+            } else if (
+                (playerChoice === 'pierre' && computerChoice === 'ciseaux') ||
+                (playerChoice === 'papier' && computerChoice === 'pierre') ||
+                (playerChoice === 'ciseaux' && computerChoice === 'papier')
+            ) {
+                result = `Vous gagnez! ${playerChoice} bat ${computerChoice}.`;
+                document.getElementById("result1").className = "win";
+            } else {
+                result = `Vous perdez! ${computerChoice} bat ${playerChoice}.`;
+                document.getElementById("result1").className = "lose";
+            }
+
+            document.getElementById("result1").textContent = result;
+        }
+
+        // Jeu de Calcul
+        let num1, num2, correctAnswer;
+
+        function generateQuestion() {
+            num1 = Math.floor(Math.random() * 10) + 1;
+            num2 = Math.floor(Math.random() * 10) + 1;
+            correctAnswer = num1 + num2;
+            document.getElementById("question").textContent = `Combien font ${num1} + ${num2} ?`;
+            document.getElementById("answer").value = "";
+            document.getElementById("result2").textContent = "";
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById("answer").value);
+
+            if (isNaN(userAnswer)) {
+                document.getElementById("result2").textContent = "Veuillez entrer un nombre valide.";
+                document.getElementById("result2").className = "";
+                return;
+            }
+
+            if (userAnswer === correctAnswer) {
+                document.getElementById("result2").textContent = "Bravo! Bonne réponse!";
+                document.getElementById("result2").className = "win";
+                setTimeout(generateQuestion, 1500);
+            } else {
+                document.getElementById("result2").textContent = "Désolé, ce n'est pas la bonne réponse. Essayez encore!";
+                document.getElementById("result2").className = "lose";
+            }
+        }
+
+        // Chronomètre
+        let chronoInterval;
+        let chronoTime = 0;
+        let chronoRunning = false;
+
+        function updateChrono() {
+            chronoTime++;
+            let hours = Math.floor(chronoTime / 3600);
+            let minutes = Math.floor((chronoTime % 3600) / 60);
+            let seconds = chronoTime % 60;
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            document.getElementById("chrono").textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function startChrono() {
+            if (!chronoRunning) {
+                chronoInterval = setInterval(updateChrono, 1000);
+                chronoRunning = true;
+            }
+        }
+
+        function stopChrono() {
+            clearInterval(chronoInterval);
+            chronoRunning = false;
+        }
+
+        function resetChrono() {
+            stopChrono();
+            chronoTime = 0;
+            document.getElementById("chrono").textContent = "00:00:00";
+        }
+
+        // Initialisation
+        window.onload = function () {
+            generateQuestion();
+        };
+    </script>
+</body>
+
+</html>
